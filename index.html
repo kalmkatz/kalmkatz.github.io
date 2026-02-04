@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KalmKatz - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #D88CC6;
+            color: #5A256D;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo-container {
+            width: 60%;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #5A256D;
+            text-shadow: 3px 3px 6px rgba(90, 37, 109, 0.3);
+            letter-spacing: 2px;
+            margin: 20px 0 30px 0;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: #B276CE;
+            margin-bottom: 50px;
+        }
+
+        .coming-soon {
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: #5A256D;
+            margin: 30px 0;
+        }
+
+        .stars-row {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .star-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2.8rem;
+            }
+            .coming-soon {
+                font-size: 2.6rem;
+            }
+            .star-img {
+                width: 32px;
+                height: 32px;
+            }
+            .logo-container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="KalmKatz Logo" class="logo-img">
+    </div>
+
+    <div class="logo-text">KALMKATZ</div>
+    <div class="tagline">Brighton and Hove Cat Sitter</div>
+
+    <div class="stars-row">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+    </div>
+
+    <div class="coming-soon">Coming Soon!</div>
+
+    <div class="stars-row">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+        <img src="star.png" alt="star" class="star-img">
+    </div>
+
+</body>
+</html>
