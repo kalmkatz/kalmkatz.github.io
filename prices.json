@@ -1,0 +1,68 @@
+{
+  "description": "Professional, insured cat sitting in Brighton & Hove. Loving in-home care, feeding, litter trays, medication, playtime & regular photo updates.",
+  "visits": [
+    {
+      "duration": "30 minutes",
+      "price": 10
+    },
+    {
+      "duration": "45 minutes",
+      "price": 15
+    },
+    {
+      "duration": "60 minutes",
+      "price": 20
+    }
+  ],
+  "uplifts": {
+    "multiple_pets": [
+      {
+        "cats": "2 cats",
+        "percent": "+10%"
+      },
+      {
+        "cats": "3 cats",
+        "percent": "+15%"
+      },
+      {
+        "cats": "more than 3 cats",
+        "percent": "+25%"
+      }
+    ],
+    "special_days": {
+      "description": "Bank holidays, Christmas Day, Boxing Day and New Year’s Day",
+      "percent": "+100%"
+    }
+  },
+  "sits": [
+    {
+      "name": "Half day sit",
+      "hours": "4 hours",
+      "price": 30
+    },
+    {
+      "name": "Full day sit",
+      "hours": "8 hours",
+      "price": 50
+    },
+    {
+      "name": "Day and night sit",
+      "hours": "",
+      "price": 70
+    }
+  ],
+  "discounts": [
+    {
+      "days": "4 to 7 days",
+      "percent": "10%"
+    },
+    {
+      "days": "8 to 14 days",
+      "percent": "20%"
+    },
+    {
+      "days": "15 to 21 days",
+      "percent": "30%"
+    }
+  ]
+}

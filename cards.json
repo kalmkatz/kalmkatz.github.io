@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Jiji",
+        "review": "Nicola is an amazing cat sitter! She was so good with our cat, sending us updates everyday. We felt super relaxed knowing that she was taking care of him. Jiji absolutely loved her! - 7 Jan 26 - Sara C - Brighton",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Winnie & Twiggy",
+        "review": "Nicola is amazing as always! Our cats are getting to know her which never happens as they're always terrified of new people. - 29 Dec 25 - Dominic W - Brighton",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Miri",
+        "review": "Nicola was brilliant with Miri, and looked after her so well. She kept me updated with pictures and just went the extra mile by even finding her on the street when she hadn't come home one evening. Highly recommended! - 7 Sept 25 - Catherine M - Brighton",
+        "rating": 5,
+        "special": true
+    },
+    {
+        "name": "Ted",
+        "review": "I cannot recommend Nicola enough! She helped us out very last minute over Christmas, accommodated an even more last minute date change - and on top of all that took brilliant care of our darling cat Ted. She sent us updates and was just so kind, we will be recommending her to everyone we know! Thank you Nicola! - 30 Dec 25 - Ella W - Brighton",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Taco & Lua",
+        "review": "Nicola was amazing with our cats, Taco & Lua. She kept us updated and we came home to two very content, cheerful cats which is all we can ask for. We will definitely book her again. - 30 Dec 25 - Clare B",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Berlioz",
+        "review": "Berlioz was so happy and well looked after!! Nicola sent regular pics and videos to ease my mind and reassure me. Berlioz is usually shy and can be a bit anxious but he was relaxed, playful and very cuddly with Nicola. 10/10. - 30 Jul 25 - Sara O - Brighton",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Smudge",
+        "review": "Nicola is awesome. Really good communication and keeps us updated. Great to have someone trustworthy and who we know will show our cat lots of love and pay close attention to the instructions we give! - 14 Jul 25 - Tapinder S - Brighton",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Elton & Dolly",
+        "review": "Nicola was lovely and super helpful, provided us with lots of updates! - 19 Jun 25 - Ruby A - Brighton",
+        "rating": 5,
+        "special": false
+    },
+    {
+        "name": "Nutmeg & Cali",
+        "review": "Nicola took great care of nutmeg and Cali while I was away. I was really reassured by regular photos and updates. Thank you. - 20 May 25 - Georgie - Hove",
+        "rating": 5,
+        "special": false
+    }
+]

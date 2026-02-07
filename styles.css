@@ -1,0 +1,736 @@
+/* ==========================================================================
+   Global / Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #D88CC6FF;
+    color: #5A256DFF;
+    padding: 20px;
+    padding-top: 140px;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Header & Logo
+   ========================================================================== */
+header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    width: 50%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
+
+.logo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+.logo {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #5A256DFF;
+    text-shadow: 3px 3px 6px rgba(90, 37, 109, 0.3);
+    letter-spacing: 2px;
+}
+
+.tagline {
+    font-size: 1.3rem;
+    color: #B276CEFF;
+    margin-top: 12px;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    
+    background: rgba(90, 37, 109, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(178, 118, 206, 0.3);
+}
+
+.nav-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: #FEFEFEFF;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 
+        2px 2px 0px #B276CEFF,
+        4px 4px 0px #DB62BFFF,
+        6px 6px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 12px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    transform: scale(1.08);
+    text-shadow: 
+        3px 3px 0px #B276CEFF,
+        6px 6px 0px #DB62BFFF,
+        9px 9px 15px rgba(0, 0, 0, 0.5);
+    background: rgba(219, 98, 191, 0.25);
+}
+
+/* ==========================================================================
+   Main Content & Section Visibility
+   ========================================================================== */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 140px;
+}
+
+.page {
+    display: none;
+}
+
+.page:target {
+    display: block;
+}
+
+html:not(:has(#prices:target)):not(:has(#book:target)) #home {
+    display: block;
+}
+
+#home {
+    display: block;
+}
+
+#prices:target ~ #home,
+#book:target ~ #home {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Review Cards (Home Section)
+   ========================================================================== */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 280px;
+    background: linear-gradient(135deg, #ffffff 0%, #ff69b4 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 
+        0 10px 30px rgba(90, 37, 109, 0.2),
+        0 5px 15px rgba(178, 118, 206, 0.15);
+    transform: translateY(0) scale(1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 
+        0 20px 40px rgba(90, 37, 109, 0.3),
+        0 10px 25px rgba(219, 98, 191, 0.25);
+    animation: shake 0.5s ease-in-out;
+    overscroll-behavior-y: none;
+}
+
+.card:hover::before {
+    opacity: 0.1;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateY(-10px) scale(1.05) rotate(0deg); }
+    25% { transform: translateY(-10px) scale(1.05) rotate(-2deg); }
+    75% { transform: translateY(-10px) scale(1.05) rotate(2deg); }
+}
+
+.card-image {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image::after {
+    content: '🐱';
+    font-size: 4rem;
+    opacity: 0.3;
+    pointer-events: none;
+    user-select: none;
+}
+
+.card-name {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #5A256DFF;
+    margin-top: 15px;
+}
+
+.review-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(90, 37, 109, 0.94);
+    border-radius: 15px;
+    padding: 22px 26px;
+    color: #FEFEFEFF;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #DB62BF #B276CE;
+}
+
+.review-overlay::-webkit-scrollbar {
+    width: 8px;
+}
+
+.review-overlay::-webkit-scrollbar-track {
+    background: rgba(178, 118, 206, 0.3);
+    border-radius: 10px;
+}
+
+.review-overlay::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #DB62BF 0%, #B276CE 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(90, 37, 109, 0.5);
+}
+
+.review-overlay::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff69b4 0%, #DB62BF 100%);
+}
+
+.card:hover .review-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.review-text {
+    font-size: 0.95rem;
+    color: #FEFEFE;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    user-select: text;
+}
+
+.special-card .card-image {
+    background: linear-gradient(135deg, #DB62BFFF 0%, #ff69b4 100%);
+}
+
+.special-card .review-overlay {
+    background: rgba(219, 98, 191, 0.95);
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 6px;
+}
+
+.star {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 4px rgba(90, 37, 109, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.card:hover .star {
+    transform: scale(1.15) rotate(12deg);
+}
+
+.card:hover .star:nth-child(odd) {
+    animation: twinkle 1.2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.85; }
+    to   { opacity: 1; }
+}
+
+/* ==========================================================================
+   Pricing Section
+   ========================================================================== */
+.pricing-container {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.pricing-title {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    color: #5A256DFF;
+    text-shadow: 2px 2px 6px rgba(90, 37, 109, 0.3);
+}
+
+.pricing-subtitle {
+    font-size: 1.3rem;
+    color: #B276CEFF;
+    margin-bottom: 40px;
+}
+
+/* Updated Pricing Grid for better alignment */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin: 30px 0;
+    justify-content: center;
+}
+
+/* Updated Price Card with gradient and flex for button alignment */
+.price-card {
+    width: 280px;
+    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 
+        0 10px 30px rgba(90, 37, 109, 0.2),
+        0 5px 15px rgba(178, 118, 206, 0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.price-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+    opacity: 0.08;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 
+        0 20px 50px rgba(90, 37, 109, 0.35),
+        0 10px 30px rgba(219, 98, 191, 0.3);
+}
+
+.price-card:hover::before {
+    opacity: 0.15;
+}
+
+/* Ensure content takes full height */
+.price-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.price-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.price-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #5A256DFF;
+}
+
+.price-amount {
+    font-size: 2.8rem;
+    color: #DB62BFFF;
+    text-shadow: 2px 2px 4px rgba(90, 37, 109, 0.2);
+}
+
+.price-per {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 30px 0;
+}
+
+.features-list {
+    list-style: none;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    font-size: 1.1rem;
+    line-height: 2;
+    text-align: left;
+}
+
+.features-list li {
+    margin-bottom: 8px;
+}
+
+.features-list li::before {
+    content: '🐾';
+    font-size: 1.2rem;
+    color: #DB62BF;
+    margin-right: 8px;
+}
+
+.features-list li strong {
+    font-weight: bold;
+    color: #5A256DFF;
+}
+
+.note {
+    margin-top: 40px;
+    font-size: 1rem;
+    color: #5A256DFF;
+    opacity: 0.9;
+    max-width: 620px;
+    margin: 0 auto 60px auto;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   Booking Form
+   ========================================================================== */
+.form-container {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.form-content {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 
+        0 10px 40px rgba(90, 37, 109, 0.25),
+        0 5px 20px rgba(178, 118, 206, 0.2);
+    position: relative;
+}
+
+.form-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+    opacity: 0.08;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #5A256DFF;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #B276CEFF;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.75);
+    color: #5A256DFF;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #DB62BFFF;
+    box-shadow: 0 0 0 4px rgba(219, 98, 191, 0.25);
+    background: white;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+/* ==========================================================================
+   CTA / Contact Buttons
+   ========================================================================== */
+.cta-button,
+.submit-btn,
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #FEFEFEFF;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+    background: linear-gradient(135deg, #5A256DFF 0%, #B276CEFF 100%);
+    border: none;
+    cursor: pointer;
+}
+
+/* Align button to bottom */
+.cta-button {
+    margin-top: auto;
+}
+
+.cta-button:hover,
+.submit-btn:hover,
+.contact-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    animation: none;
+    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(90, 37, 109, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 70;
+    border-top: 1px solid rgba(178, 118, 206, 0.25);
+}
+
+.badges-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.footer-badge {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FEFEFEFF;
+    text-shadow: 
+        2px 2px 0px #B276CEFF,
+        4px 4px 0px #DB62BFFF,
+        6px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: perspective(500px) rotateX(10deg);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.footer-badge:hover {
+    transform: perspective(500px) rotateX(0deg) scale(1.1);
+    text-shadow: 
+        3px 3px 0px #B276CEFF,
+        6px 6px 0px #DB62BFFF,
+        9px 9px 15px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: #FEFEFEFF;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* ==========================================================================
+   Under Construction Notice
+   ========================================================================== */
+.under-construction {
+    text-align: center;
+    color: #FF0000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 2.6rem;
+    }
+    .logo-container {
+        width: 80%;
+    }
+    .navigation {
+        gap: 20px;
+        padding: 12px;
+    }
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+    }
+    .cards-container {
+        gap: 30px;
+    }
+    .button-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .contact-btn,
+    .cta-button,
+    .submit-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    .pricing-title {
+        font-size: 2rem;
+    }
+    .price-amount {
+        font-size: 2.4rem;
+    }
+    .form-container {
+        padding: 30px 24px;
+    }
+    footer {
+        gap: 30px;
+        padding: 15px;
+    }
+    .footer-badge {
+        font-size: 1.1rem;
+    }
+}
+
+.service-description {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    max-width: 900px;
+    margin: 16px auto 0;
+    color: #5A256DFF;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Price Card Enhancements
+   ========================================================================== */
+.price-card .features-list li strong {
+    font-weight: bold;
+    color: #5A256DFF;
+}
+
+.price-card .features-list li::before {
+    content: '🐾';
+    font-size: 1.2rem;
+    color: #DB62BF;
+}
+
+/* ==========================================================================
+   Emergency Layout Fix (wide screens)
+   ========================================================================== */
+@media (min-width: 900px) {
+    .cards-container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 1400px !important;
+    }
+    
+    .card {
+        width: 280px !important;
+        max-width: 280px !important;
+        flex: 0 0 280px !important;
+        flex-grow: 0 !important;
+        flex-shrink: 0 !important;
+    }
+}

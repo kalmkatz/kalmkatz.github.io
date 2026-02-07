@@ -1,0 +1,192 @@
+// ==========================================================================
+// main.js - KalmKatz - Data Loader & Renderer
+// ==========================================================================
+
+// Helper function to load JSON via XHR (works on file:// URLs)
+function loadJSON(url, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.overrideMimeType("application/json");
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200 || xhr.status === 0) {
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    callback(null, data);
+                } catch (e) {
+                    callback(e, null);
+                }
+            } else {
+                callback(new Error(`Failed to load ${url} (status: ${xhr.status})`), null);
+            }
+        }
+    };
+    xhr.send(null);
+}
+
+// ==========================================================================
+// Initialize on page load
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Load and render cat review cards
+    loadJSON('cards.json', (err, cards) => {
+        if (err) {
+            console.error('Error loading cards:', err);
+            document.getElementById('home').innerHTML = 
+                '<p style="text-align:center; color:#5A256DFF; font-size:1.2rem;">Sorry, could not load the cat reviews at this time.</p>';
+            return;
+        }
+        renderCards(cards);
+    });
+
+    // Load and render pricing information
+    loadJSON('prices.json', (err, prices) => {
+        if (err) {
+            console.error('Error loading prices:', err);
+            document.getElementById('pricing-grid').innerHTML = 
+                '<p style="text-align:center; color:#5A256DFF; font-size:1.2rem;">Sorry, could not load pricing information right now.</p>';
+            return;
+        }
+        renderPrices(prices);
+    });
+});
+
+// ==========================================================================
+// Render review cards
+// ==========================================================================
+function renderCards(cards) {
+    const container = document.getElementById('home');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    cards.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = `card ${card.special ? 'special-card' : ''}`;
+
+        cardElement.innerHTML = `
+            <div class="card-image">
+                <div class="review-overlay">
+                    <p class="review-text">${card.review}</p>
+                </div>
+            </div>
+            <div class="card-name">${card.name}</div>
+            <div class="rating">
+                ${'<img src="star.png" alt="star" class="star">'.repeat(card.rating)}
+            </div>
+        `;
+
+        container.appendChild(cardElement);
+
+        const overlay = cardElement.querySelector('.review-overlay');
+
+        const wasOpacity = overlay.style.opacity;
+        overlay.style.opacity = '1';
+        const hasOverflow = overlay.scrollHeight > overlay.clientHeight;
+        overlay.style.opacity = wasOpacity;
+
+        if (hasOverflow) {
+            cardElement.classList.add('scrollable');
+        }
+
+        cardElement.addEventListener('wheel', (e) => {
+            if (overlay.scrollHeight <= overlay.clientHeight) return;
+
+            const atTop    = overlay.scrollTop <= 0;
+            const atBottom = overlay.scrollTop + overlay.clientHeight >= overlay.scrollHeight - 1;
+
+            const scrollingDown  = e.deltaY > 0;
+            const scrollingUp    = e.deltaY < 0;
+
+            if ((scrollingDown && atBottom) || (scrollingUp && atTop)) {
+                return;
+            }
+
+            e.preventDefault();
+            overlay.scrollTop += e.deltaY;
+        }, { passive: false });
+    });
+}
+
+// ==========================================================================
+// Render pricing cards
+// ==========================================================================
+function renderPrices(prices) {
+    const grid = document.getElementById('pricing-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    // Visits Card
+    const visitsCard = document.createElement('div');
+    visitsCard.className = 'price-card';
+    visitsCard.innerHTML = `
+        <div class="price-content">
+            <div class="price-header">
+                <div class="price-name">Visit Prices</div>
+            </div>
+            <ul class="features-list">
+                <li>30 minutes — £${prices.visits[0].price}</li>
+                <li>45 minutes — £${prices.visits[1].price}</li>
+                <li>60 minutes — £${prices.visits[2].price}</li>
+            </ul>
+            <a href="#book" class="cta-button">Book Now</a>
+        </div>
+    `;
+    grid.appendChild(visitsCard);
+
+    // Uplifts Card
+    const upliftsCard = document.createElement('div');
+    upliftsCard.className = 'price-card';
+    upliftsCard.innerHTML = `
+        <div class="price-content">
+            <div class="price-header">
+                <div class="price-name">Uplifts</div>
+            </div>
+            <ul class="features-list">
+                <li><strong>Multiple Pets:</strong></li>
+                <li>+10% for 2 cats</li>
+                <li>+15% for 3 cats</li>
+                <li>+25% for more than 3 cats</li>
+                <li><strong>Special Days:</strong> ${prices.uplifts.special_days.description} — ${prices.uplifts.special_days.percent}</li>
+            </ul>
+            <a href="#book" class="cta-button">Book Now</a>
+        </div>
+    `;
+    grid.appendChild(upliftsCard);
+
+    // Extended Sits Card
+    const sitsCard = document.createElement('div');
+    sitsCard.className = 'price-card';
+    sitsCard.innerHTML = `
+        <div class="price-content">
+            <div class="price-header">
+                <div class="price-name">Extended Sits</div>
+            </div>
+            <ul class="features-list">
+                <li>Half day (4 hours) — £${prices.sits[0].price}</li>
+                <li>Full day (8 hours) — £${prices.sits[1].price}</li>
+                <li>Day and night — £${prices.sits[2].price}</li>
+            </ul>
+            <a href="#book" class="cta-button">Book Now</a>
+        </div>
+    `;
+    grid.appendChild(sitsCard);
+
+    // Discounts Card
+    const discountsCard = document.createElement('div');
+    discountsCard.className = 'price-card';
+    discountsCard.innerHTML = `
+        <div class="price-content">
+            <div class="price-header">
+                <div class="price-name">Multi-Day Discounts</div>
+            </div>
+            <ul class="features-list">
+                <li>10% off for 4–7 days</li>
+                <li>20% off for 8–14 days</li>
+                <li>30% off for 15–21 days</li>
+            </ul>
+            <a href="#book" class="cta-button">Book Now</a>
+        </div>
+    `;
+    grid.appendChild(discountsCard);
+}

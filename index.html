@@ -3,119 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KalmKatz - Coming Soon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #D88CC6;
-            color: #5A256D;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .logo-container {
-            width: 60%;
-            max-width: 500px;
-            margin-bottom: 30px;
-        }
-
-        .logo-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .logo-text {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #5A256D;
-            text-shadow: 3px 3px 6px rgba(90, 37, 109, 0.3);
-            letter-spacing: 2px;
-            margin: 20px 0 30px 0;
-        }
-
-        .tagline {
-            font-size: 1.4rem;
-            color: #B276CE;
-            margin-bottom: 50px;
-        }
-
-        .coming-soon {
-            font-size: 3.2rem;
-            font-weight: bold;
-            color: #5A256D;
-            margin: 30px 0;
-        }
-
-        .stars-row {
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .star-img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-
-        @media (max-width: 768px) {
-            .logo-text {
-                font-size: 2.8rem;
-            }
-            .coming-soon {
-                font-size: 2.6rem;
-            }
-            .star-img {
-                width: 32px;
-                height: 32px;
-            }
-            .logo-container {
-                width: 80%;
-            }
-        }
-    </style>
+    <title>KalmKatz Cat Sitting Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
 
+<!-- ==========================================================================
+   Navigation
+   ========================================================================== -->
+<nav class="navigation">
+    <div class="nav-row">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#prices" class="nav-link">Prices</a>
+        <a href="#book" class="nav-link">Book</a>
+    </div>
+    <div class="contact-row">
+        <a href="tel:+447728680577" class="contact-btn">
+            <span class="btn-icon">📱</span>
+            <span>Call</span>
+        </a>
+        <a href="https://wa.me/447728680577" class="contact-btn" target="_blank">
+            <span class="btn-icon">💬</span>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+</nav>
+
+<!-- ==========================================================================
+   Header
+   ========================================================================== -->
+<header>
     <div class="logo-container">
         <img src="logo.png" alt="KalmKatz Logo" class="logo-img">
     </div>
-
-    <div class="logo-text">KALMKATZ</div>
+    <div class="logo">KALMKATZ</div>
     <div class="tagline">Brighton and Hove Cat Sitter</div>
+    <p class="service-description">
+        Professional, insured cat sitting in Brighton & Hove. Loving in-home care, feeding, litter trays, medication, playtime & regular photo updates. Perfect for holidays, weekends & busy workdays. Trusted, calm, and cat-obsessed ♡
+    </p>
+</header>
 
-    <div class="stars-row">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
+<!-- ==========================================================================
+   Main Content
+   ========================================================================== -->
+<main class="main-content">
+
+    <!-- ==========================================================================
+       Prices Section
+       ========================================================================== -->
+    <section id="prices" class="page pricing-container">
+        <h1 class="pricing-title">Our Prices</h1>
+        <p class="pricing-subtitle">All prices include travel within a 10-mile radius of my base</p>
+        
+        <div class="pricing-grid" id="pricing-grid">
+        </div>
+
+        <p class="note">
+            Prices valid as of 2026 • Additional mileage may apply beyond 10 miles • Special requirements may incur small extra charge • All prices include VAT where applicable ♡
+        </p>
+    </section>
+
+    <!-- ==========================================================================
+       Book Section
+       ========================================================================== -->
+    <section id="book" class="page form-container">
+        <div class="form-content">
+            <h1>Booking Request</h1>
+            <p class="under-construction">
+                Under construction — This form is currently disabled. Please use the contact buttons above to get in touch.
+            </p>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Full name" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="e.g. 07747 474 744" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="cat-name">Cat's Name(s) *</label>
+                    <input type="text" id="cat-name" name="cat-name" required placeholder="e.g. Whiskers & Mittens" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="start-date">Start Date *</label>
+                    <input type="date" id="start-date" name="start-date" required disabled>
+                </div>
+                <div class="form-group">
+                    <label for="end-date">End Date *</label>
+                    <input type="date" id="end-date" name="end-date" required disabled>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Type *</label>
+                    <select id="service" name="service" required disabled>
+                        <option value="" disabled selected>Select service</option>
+                        <option value="visit-30">30 Minute Visit</option>
+                        <option value="visit-45">45 Minute Visit</option>
+                        <option value="visit-60">60 Minute Visit</option>
+                        <option value="half-day">Half Day Sit (4 hours)</option>
+                        <option value="full-day">Full Day Sit (8 hours)</option>
+                        <option value="day-night">Day and Night Sit</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Any special requirements, feeding instructions, vet details, personality notes, etc..." disabled></textarea>
+                </div>
+                <button type="submit" class="submit-btn" disabled>Submit Booking Request</button>
+            </form>
+            <p class="note">We'll get back to you within 24 hours to confirm availability and discuss details ♡</p>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       Home Section
+       ========================================================================== -->
+    <section id="home" class="page cards-container">
+    </section>
+
+</main>
+
+<!-- ==========================================================================
+   Footer
+   ========================================================================== -->
+<footer>
+    <div class="badges-container">
+        <div class="footer-badge">✓ Fully Insured</div>
+        <div class="footer-badge">✓ DBS Checked</div>
     </div>
-
-    <div class="coming-soon">Coming Soon!</div>
-
-    <div class="stars-row">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-        <img src="star.png" alt="star" class="star-img">
-    </div>
+    <div class="copyright">© 2026 KalmKatz.co.uk</div>
+</footer>
 
 </body>
 </html>
