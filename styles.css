@@ -134,11 +134,11 @@ header {
 }
 
 html:not(:has(#prices:target)):not(:has(#book:target)) #home {
-    display: block;
+    display: flex;
 }
 
 #home {
-    display: block;
+    display: flex;
 }
 
 #prices:target ~ #home,
@@ -244,12 +244,19 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
     font-size: 1.05rem;
     line-height: 1.45;
     overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
+    transform: translateY(0);  /* Always visible */
+    transition: transform 0.35s ease;  /* Optional: Retain for other effects if needed */
+    pointer-events: auto;  /* Always allow interaction for scrolling */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: #DB62BF #B276CE;
+}
+
+
+
+/* Optional: fade-in feel while sliding */
+.card:hover .review-overlay {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .review-overlay::-webkit-scrollbar {
@@ -269,12 +276,6 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
 
 .review-overlay::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #ff69b4 0%, #DB62BF 100%);
-}
-
-.card:hover .review-overlay {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
 }
 
 .review-text {

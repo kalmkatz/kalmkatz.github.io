@@ -79,11 +79,7 @@ function renderCards(cards) {
         container.appendChild(cardElement);
 
         const overlay = cardElement.querySelector('.review-overlay');
-
-        const wasOpacity = overlay.style.opacity;
-        overlay.style.opacity = '1';
         const hasOverflow = overlay.scrollHeight > overlay.clientHeight;
-        overlay.style.opacity = wasOpacity;
 
         if (hasOverflow) {
             cardElement.classList.add('scrollable');
