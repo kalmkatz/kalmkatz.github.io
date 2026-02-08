@@ -186,3 +186,20 @@ function renderPrices(prices) {
     `;
     grid.appendChild(discountsCard);
 }
+
+// ==========================================================================
+// Dynamic Nav Height Adjustment
+// ==========================================================================
+
+// Make sure the logo never hides behind the fixed nav
+function updateBodyPadding() {
+    const nav = document.querySelector('.navigation');
+    const padding = nav ? nav.offsetHeight + 20 : 140;  // 20px extra breathing room
+    document.body.style.paddingTop = padding + 'px';
+}
+
+// Run it once when the page loads
+updateBodyPadding();
+
+// And run it again every time the window size changes
+window.addEventListener('resize', updateBodyPadding);

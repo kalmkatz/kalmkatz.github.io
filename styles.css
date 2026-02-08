@@ -342,24 +342,29 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
     margin-bottom: 40px;
 }
 
-/* Updated Pricing Grid for better alignment */
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
     gap: 40px;
-    margin: 30px 0;
+    margin: 40px auto;
     justify-content: center;
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    justify-items: center;
 }
 
-/* Updated Price Card with gradient and flex for button alignment */
 .price-card {
     width: 280px;
-    background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
-    border-radius: 20px;
-    padding: 25px;
+    background: linear-gradient(135deg, #ffffff 0%, #ff69b4 100%);
+    border-radius: 24px;
+    padding: 30px;
     box-shadow: 
-        0 10px 30px rgba(90, 37, 109, 0.2),
-        0 5px 15px rgba(178, 118, 206, 0.15);
+        0 10px 40px rgba(90, 37, 109, 0.25),
+        0 5px 20px rgba(178, 118, 206, 0.2);
+    position: relative;
+    overflow: hidden;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -372,9 +377,8 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
     inset: 0;
     border-radius: 24px;
     background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
-    opacity: 0.08;
+    opacity: 0;
     z-index: 0;
-    transition: opacity 0.3s ease;
 }
 
 .price-card:hover {
@@ -385,14 +389,15 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
 }
 
 .price-card:hover::before {
-    opacity: 0.15;
+    opacity: 0.1;
 }
 
-/* Ensure content takes full height */
 .price-content {
     display: flex;
     flex-direction: column;
     flex: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .price-header {
