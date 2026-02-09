@@ -54,6 +54,44 @@ header {
 }
 
 /* ==========================================================================
+   Verdict Block (Highlighted Review Summary)
+   ========================================================================== */
+.verdict-block {
+    background-color: rgba(255, 255, 255, 0.15); /* Slight tint for subtle highlight */
+    border: 1px solid rgba(178, 118, 206, 0.3); /* Subtle border matching theme */
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 30px auto;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(90, 37, 109, 0.1);
+}
+
+.verdict-block p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: #5A256DFF;
+}
+
+.verdict-block .verdict-stars {
+    font-size: 2rem;
+    color: #DB62BF; /* Pink-purple to match theme */
+    margin-bottom: 10px;
+}
+
+.verdict-block a {
+    color: #B276CEFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.verdict-block a:hover {
+    color: #DB62BF;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
    Navigation
    ========================================================================== */
 .navigation {
