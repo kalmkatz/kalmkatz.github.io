@@ -759,6 +759,55 @@ footer {
 }
 
 /* ==========================================================================
+   Social Media Links in Footer
+   ========================================================================== */
+.social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 15px 0;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5A256D 0%, #B276CE 100%);
+    color: #FEFEFEFF;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #B276CE 0%, #DB62BF 100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: make Facebook 'f' look a bit better */
+.social-link[href*="facebook"] {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+/* Responsive tweak for smaller screens */
+@media (max-width: 480px) {
+    .social-link {
+        width: 42px;
+        height: 42px;
+        font-size: 1.4rem;
+    }
+}
+
+/* ==========================================================================
    Emergency Layout Fix (wide screens)
    ========================================================================== */
 @media (min-width: 900px) {
