@@ -1,0 +1,65 @@
+<!-- https://kalmkatz.co.uk/marketing/campaign/202602/bizcard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting…</title>
+
+  <script>
+    // Log data (commented out for now — server-side logging not ready yet)
+    /*
+    const logData = {
+      campaign: "202602",
+      timestamp: new Date().toISOString(),
+      referrer: document.referrer || "direct",
+      userAgent: navigator.userAgent,
+      language: navigator.language,
+      screen: `${window.screen.width}x${window.screen.height}`
+    };
+
+    fetch('https://', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(logData),
+      mode: 'no-cors'
+    }).catch(() => {});
+    */
+
+    // Redirect to WhatsApp (this part stays active)
+    window.location.replace("https://wa.me/447728680577?text=Booking%20Request");
+  </script>
+</head>
+<body>
+  <p>Redirecting to WhatsApp…</p>
+
+  <!-- No-JS fallback – friendly and action-oriented -->
+  <noscript>
+    <div style="padding: 2rem; max-width: 480px; margin: 0 auto; text-align: center; font-family: system-ui, sans-serif;">
+      <h2 style="margin-bottom: 1.5rem;">Thanks for scanning!</h2>
+      <p style="font-size: 1.1rem; line-height: 1.5; margin-bottom: 2rem;">
+        You can reach Nicola right now:
+      </p>
+
+      <p style="margin: 1.5rem 0; font-size: 1.2rem;">
+        <strong>Call now:</strong><br>
+        <a href="tel:07728680577" style="color: #25D366; text-decoration: none; font-weight: bold;">07728680577</a>
+      </p>
+
+      <p style="margin: 1.5rem 0; font-size: 1.2rem;">
+        <strong>Or WhatsApp:</strong><br>
+        <a href="https://wa.me/447728680577?text=Booking%20Request" style="color: #25D366; text-decoration: none; font-weight: bold; background: #f0f0f0; padding: 0.8rem 1.5rem; border-radius: 8px; display: inline-block; margin-top: 0.5rem;">
+          Message on WhatsApp
+        </a>
+      </p>
+
+      <p style="font-size: 0.95rem; color: #555; margin-top: 2rem;">
+        (JavaScript is currently disabled or blocked — the automatic redirect didn’t work)
+      </p>
+    </div>
+
+    <!-- Still attempt a meta refresh as backup -->
+    <meta http-equiv="refresh" content="4;url=https://wa.me/447728680577?text=Booking%20Request">
+  </noscript>
+</body>
+</html>
