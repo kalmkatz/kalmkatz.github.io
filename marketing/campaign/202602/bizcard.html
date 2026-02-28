@@ -4,62 +4,282 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting…</title>
+  <title>KalmKatz – Cat Sitting Brighton & Hove</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <script>
-    // Log data (commented out for now — server-side logging not ready yet)
-    /*
-    const logData = {
-      campaign: "202602",
-      timestamp: new Date().toISOString(),
-      referrer: document.referrer || "direct",
-      userAgent: navigator.userAgent,
-      language: navigator.language,
-      screen: `${window.screen.width}x${window.screen.height}`
-    };
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #D88CC6FF;
+      color: #5A256DFF;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px 120px;
+    }
 
-    fetch('https://', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(logData),
-      mode: 'no-cors'
-    }).catch(() => {});
-    */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(90,37,109,0.35);
+      cursor: pointer;
+      background: #5A256D;
+    }
 
-    // Redirect to WhatsApp (this part stays active)
-    window.location.replace("https://wa.me/447728680577?text=Booking%20Request");
-  </script>
+    video {
+      width: 100%;
+      display: block;
+      border-radius: 24px;
+    }
+
+    /* countdown ring overlay */
+    .countdown-ring {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 54px;
+      height: 54px;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .countdown-ring.hidden { opacity: 0; }
+
+    .countdown-ring svg {
+      width: 54px;
+      height: 54px;
+      transform: rotate(-90deg);
+    }
+
+    .ring-bg { fill: none; stroke: rgba(255,255,255,0.25); stroke-width: 4; }
+    .ring-progress {
+      fill: none;
+      stroke: #DB62BF;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 138.23; /* 2π×22 */
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .countdown-number {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .countdown-number.hidden { opacity: 0; }
+
+    /* sleeping cat indicator when paused */
+    .sleep-badge {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(90,37,109,0.82);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 50px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .sleep-badge.visible { opacity: 1; }
+
+    .caption {
+      margin-top: 22px;
+      max-width: 480px;
+      text-align: center;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      color: #5A256DFF;
+      font-weight: 500;
+      background: rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 16px 22px;
+      border: 1px solid rgba(178,118,206,0.35);
+    }
+
+    .caption strong { color: #5A256DFF; }
+
+    /* contact buttons below */
+    .btn-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .btn-row.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.05rem;
+      color: #FEFEFE;
+      background: linear-gradient(135deg, #5A256DFF 0%, #B276CEFF 100%);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: pulse 2s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      background: linear-gradient(135deg, #B276CEFF 0%, #DB62BFFF 100%);
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(90,37,109,0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #FEFEFE;
+      border-top: 1px solid rgba(178,118,206,0.25);
+      z-index: 70;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to WhatsApp…</p>
 
-  <!-- No-JS fallback – friendly and action-oriented -->
-  <noscript>
-    <div style="padding: 2rem; max-width: 480px; margin: 0 auto; text-align: center; font-family: system-ui, sans-serif;">
-      <h2 style="margin-bottom: 1.5rem;">Thanks for scanning!</h2>
-      <p style="font-size: 1.1rem; line-height: 1.5; margin-bottom: 2rem;">
-        You can reach Nicola right now:
-      </p>
-
-      <p style="margin: 1.5rem 0; font-size: 1.2rem;">
-        <strong>Call now:</strong><br>
-        <a href="tel:07728680577" style="color: #25D366; text-decoration: none; font-weight: bold;">07728680577</a>
-      </p>
-
-      <p style="margin: 1.5rem 0; font-size: 1.2rem;">
-        <strong>Or WhatsApp:</strong><br>
-        <a href="https://wa.me/447728680577?text=Booking%20Request" style="color: #25D366; text-decoration: none; font-weight: bold; background: #f0f0f0; padding: 0.8rem 1.5rem; border-radius: 8px; display: inline-block; margin-top: 0.5rem;">
-          Message on WhatsApp
-        </a>
-      </p>
-
-      <p style="font-size: 0.95rem; color: #555; margin-top: 2rem;">
-        (JavaScript is currently disabled or blocked — the automatic redirect didn’t work)
-      </p>
+  <div class="video-wrapper" id="videoWrapper">
+    <video id="mainVideo" autoplay muted playsinline loop></video>
+    <div class="countdown-ring" id="countdownRing">
+      <svg viewBox="0 0 54 54">
+        <circle class="ring-bg" cx="27" cy="27" r="22"/>
+        <circle class="ring-progress" id="ringProgress" cx="27" cy="27" r="22"/>
+      </svg>
     </div>
+    <div class="countdown-number" id="countdownNumber">12</div>
+    <div class="sleep-badge" id="sleepBadge">😴 Kitty is resting…</div>
+  </div>
 
-    <!-- Still attempt a meta refresh as backup -->
-    <meta http-equiv="refresh" content="4;url=https://wa.me/447728680577?text=Booking%20Request">
-  </noscript>
+  <p class="caption">
+    You'll be auto connected to WhatsApp to chat directly shortly,
+    <strong>put the kitty to sleep (click/tap the kitty)</strong> if you'd like to explore other options instead
+  </p>
+
+  <div class="btn-row" id="btnRow">
+    <a href="tel:07728680577" class="contact-btn">📱 Call</a>
+    <a href="https://wa.me/447728680577?text=Booking%20Request" class="contact-btn" target="_blank">💬 WhatsApp</a>
+    <a href="https://kalmkatz.co.uk" class="contact-btn" target="_blank">🐱 Website</a>
+  </div>
+
+  <footer>© 2026 KalmKatz.co.uk · <a href="https://kalmkatz.co.uk#privacy" style="color:inherit;">Privacy Policy</a></footer>
+
+  <script>
+    const COUNTDOWN = 12;
+    const CIRCUMFERENCE = 2 * Math.PI * 22; // ≈138.23
+
+    const video        = document.getElementById('mainVideo');
+    const ring         = document.getElementById('countdownRing');
+    const ringProgress = document.getElementById('ringProgress');
+    const numEl        = document.getElementById('countdownNumber');
+    const sleepBadge   = document.getElementById('sleepBadge');
+    const btnRow       = document.getElementById('btnRow');
+    const wrapper      = document.getElementById('videoWrapper');
+
+    let sleeping   = false;
+    let timeLeft   = COUNTDOWN;
+    let timer      = null;
+
+    // ── Set up ring
+    ringProgress.style.strokeDasharray  = CIRCUMFERENCE;
+    ringProgress.style.strokeDashoffset = 0;
+
+    // ── Load yawn video first
+    video.src = 'yawn.mp4';
+    video.load();
+    video.play().catch(() => {});
+
+    function startCountdown() {
+      timer = setInterval(() => {
+        if (sleeping) { clearInterval(timer); return; }
+        timeLeft--;
+        numEl.textContent = timeLeft;
+
+        // Animate ring (shrinks as time runs out)
+        const fraction = timeLeft / COUNTDOWN;
+        ringProgress.style.strokeDashoffset = CIRCUMFERENCE * (1 - fraction);
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          ring.classList.add('hidden');
+          numEl.classList.add('hidden');
+          window.location.replace("https://wa.me/447728680577?text=Booking%20Request");
+        }
+      }, 1000);
+    }
+
+    // Start countdown once video begins playing
+    video.addEventListener('playing', startCountdown, { once: true });
+
+    // ── Click / tap: put kitty to sleep
+    wrapper.addEventListener('click', () => {
+      if (sleeping) return;
+      sleeping = true;
+      clearInterval(timer);
+
+      // Hide countdown UI
+      ring.classList.add('hidden');
+      numEl.classList.add('hidden');
+      sleepBadge.classList.add('visible');
+
+      // Swap to sleep video
+      video.src = 'sleep.mp4';
+      video.loop = true;
+      video.load();
+      video.play().catch(() => {});
+
+      // Reveal contact options
+      btnRow.classList.add('visible');
+    });
+  </script>
+
 </body>
 </html>
