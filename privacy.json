@@ -1,0 +1,129 @@
+{
+  "title": "Privacy Policy",
+  "lastUpdated": "28th of February 2026",
+  "sections": [
+    {
+      "id": "who-we-are",
+      "heading": "1. Who We Are",
+      "content": [
+        "This website is operated by <strong>KalmKatz (KalmKatz.co.uk)</strong> (\"we\", \"us\", \"our\"). We are the data controller responsible for personal data collected through this website.",
+        "If you have any questions about this policy or your data, you can contact us at: <a href=\"mailto:info@kalmkatz.co.uk\">info@kalmkatz.co.uk</a>"
+      ]
+    },
+    {
+      "id": "what-data",
+      "heading": "2. What Data We Collect",
+      "content": [
+        "When you visit our website, we collect limited technical information via JavaScript and secure server logging. This may include:"
+      ],
+      "list": [
+        "IP address",
+        "Date and time of visit",
+        "Browser type and version",
+        "Operating system",
+        "Referring website or source (where you came from)",
+        "Pages accessed",
+        "Approximate geographic location (derived from IP address)",
+        "Technical indicators used to determine whether a visitor is human, automated, or potentially malicious"
+      ],
+      "contentAfter": [
+        "We do <strong>not</strong> use cookies. We do <strong>not</strong> collect names, contact details, or account information unless you separately provide them to us."
+      ]
+    },
+    {
+      "id": "why-we-collect",
+      "heading": "3. Why We Collect This Data",
+      "content": [
+        "We process this information for the following purposes:"
+      ],
+      "list": [
+        "<strong>Analytics</strong> – to understand how visitors find our website and which marketing campaigns are effective",
+        "<strong>Business intelligence</strong> – to determine general geographic demand and identify legitimate customer regions",
+        "<strong>Security monitoring</strong> – to detect bots, attackers, and fraudulent activity",
+        "<strong>Abuse prevention and fraud detection</strong> – to protect our website and infrastructure"
+      ],
+      "contentAfter": [
+        "We are not interested in identifying individual visitors. Our focus is understanding traffic sources and protecting our systems."
+      ]
+    },
+    {
+      "id": "legal-basis",
+      "heading": "4. Legal Basis for Processing",
+      "content": [
+        "We process this data under <strong>Legitimate Interests</strong> (Article 6(1)(f) UK GDPR).",
+        "Our legitimate interests are:"
+      ],
+      "list": [
+        "Operating and improving our business",
+        "Measuring marketing effectiveness",
+        "Protecting our website from misuse, fraud, and malicious activity"
+      ],
+      "contentAfter": [
+        "We believe this processing is proportionate, minimal, and does not override your fundamental rights and freedoms."
+      ]
+    },
+    {
+      "id": "data-retention",
+      "heading": "5. Data Retention",
+      "content": [
+        "Raw technical logs are retained for a limited period for analytics and security purposes.",
+        "After this period, data is either:"
+      ],
+      "list": [
+        "Automatically deleted, or",
+        "Anonymised so that it can no longer identify any individual"
+      ],
+      "contentAfter": [
+        "Anonymised statistical data may be retained longer for business analysis."
+      ]
+    },
+    {
+      "id": "data-sharing",
+      "heading": "6. Data Sharing",
+      "content": [
+        "We do <strong>not</strong> sell your data. We do <strong>not</strong> share your personal data with third parties for marketing purposes.",
+        "Data is processed on our secured VPS infrastructure. Access is restricted and protected using appropriate technical security measures."
+      ]
+    },
+    {
+      "id": "international-transfers",
+      "heading": "7. International Transfers",
+      "content": [
+        "We do not intentionally transfer your personal data outside the United Kingdom unless required for infrastructure or hosting purposes, in which case appropriate safeguards will be in place."
+      ]
+    },
+    {
+      "id": "your-rights",
+      "heading": "8. Your Rights",
+      "content": [
+        "Under UK data protection law, you have the right to:"
+      ],
+      "list": [
+        "Request access to your personal data",
+        "Request correction of inaccurate data",
+        "Request erasure of your data",
+        "Request restriction of processing",
+        "Object to processing based on legitimate interests",
+        "Lodge a complaint with the <a href=\"https://ico.org.uk\" target=\"_blank\">Information Commissioner's Office</a>"
+      ],
+      "contentAfter": [
+        "If you wish to exercise any of your rights, please contact us at: <a href=\"mailto:info@kalmkatz.co.uk\">info@kalmkatz.co.uk</a>",
+        "We may need to verify your identity before responding to requests."
+      ]
+    },
+    {
+      "id": "security",
+      "heading": "9. Security",
+      "content": [
+        "We implement appropriate technical and organisational measures to protect data against unauthorised access, loss, misuse, or alteration."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "10. Changes to This Policy",
+      "content": [
+        "We may update this policy from time to time. The latest version will always be available on this page."
+      ]
+    }
+  ]
+}

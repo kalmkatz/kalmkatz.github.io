@@ -1,6 +1,8 @@
-/* ==========================================================================
-   Global / Reset
-   ========================================================================== */
+
+/* ==================
+   | GLOBAL / RESET |
+   ================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -16,9 +18,15 @@ body {
     min-height: 100vh;
 }
 
-/* ==========================================================================
-   Header & Logo
-   ========================================================================== */
+
+
+
+
+
+/* =================
+   | HEADER & LOGO |
+   ================= */
+
 header {
     text-align: center;
     padding: 40px 20px 20px;
@@ -53,9 +61,16 @@ header {
     margin-top: 12px;
 }
 
-/* ==========================================================================
-   Verdict Block (Highlighted Review Summary)
-   ========================================================================== */
+
+
+
+
+
+
+/* ==========================
+   | VERDICT BLOCK |
+   ========================== */
+
 .verdict-block {
     background-color: rgba(255, 255, 255, 0.15); /* Slight tint for subtle highlight */
     border: 1px solid rgba(178, 118, 206, 0.3); /* Subtle border matching theme */
@@ -91,9 +106,18 @@ header {
     text-decoration: underline;
 }
 
-/* ==========================================================================
-   Navigation
-   ========================================================================== */
+
+
+
+
+
+
+
+
+/* ==============
+   | NAVIGATION |
+   ============== */
+
 .navigation {
     position: fixed;
     top: 0;
@@ -153,9 +177,15 @@ header {
     background: rgba(219, 98, 191, 0.25);
 }
 
-/* ==========================================================================
-   Main Content & Section Visibility
-   ========================================================================== */
+
+
+
+
+
+/* =======================================
+   | MAIN CONTENT & SELECTION VISIBILITY |
+   ======================================= */
+
 .main-content {
     max-width: 1400px;
     margin: 0 auto;
@@ -171,7 +201,7 @@ header {
     display: block;
 }
 
-html:not(:has(#prices:target)):not(:has(#book:target)) #home {
+html:not(:has(#prices:target)):not(:has(#book:target)):not(:has(#privacy:target)) #home {
     display: flex;
 }
 
@@ -180,13 +210,20 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
 }
 
 #prices:target ~ #home,
-#book:target ~ #home {
+#book:target ~ #home,
+#privacy:target ~ #home {
     display: none !important;
 }
 
-/* ==========================================================================
-   Review Cards (Home Section)
-   ========================================================================== */
+
+
+
+
+
+/* ===============================
+   | REVIEW CARDS (HOME SECTION) |
+   =============================== */
+
 .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -283,16 +320,14 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
     line-height: 1.45;
     overflow-y: auto;
     transform: translateY(0);  /* Always visible */
-    transition: transform 0.35s ease;  /* Optional: Retain for other effects if needed */
+    transition: transform 0.35s ease;  /* Retain for other effects if needed */
     pointer-events: auto;  /* Always allow interaction for scrolling */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: #DB62BF #B276CE;
 }
 
-
-
-/* Optional: fade-in feel while sliding */
+/* fade-in feel while sliding */
 .card:hover .review-overlay {
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -359,9 +394,15 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
     to   { opacity: 1; }
 }
 
-/* ==========================================================================
-   Pricing Section
-   ========================================================================== */
+
+
+
+
+
+/* ===================
+   | PRICING SECTION |
+   =================== */
+
 .pricing-container {
     padding: 40px 20px;
     text-align: center;
@@ -496,9 +537,16 @@ html:not(:has(#prices:target)):not(:has(#book:target)) #home {
     font-style: italic;
 }
 
-/* ==========================================================================
-   Booking Form
-   ========================================================================== */
+
+
+
+
+
+
+/* ================
+   | BOOKING FORM |
+   ================ */
+
 .form-container {
     padding: 40px 20px;
     max-width: 800px;
@@ -565,9 +613,15 @@ textarea {
     width: 100%;
 }
 
-/* ==========================================================================
-   CTA / Contact Buttons
-   ========================================================================== */
+
+
+
+
+
+/* =========================
+   | CTA / CONTACT BUTTONS |
+   ========================= */
+
 .cta-button,
 .submit-btn,
 .contact-btn {
@@ -607,9 +661,17 @@ textarea {
     font-size: 1.5rem;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+
+
+
+
+
+
+
+/* ==========
+   | FOOTER |
+   ========== */
+
 footer {
     position: fixed;
     bottom: 0;
@@ -663,17 +725,28 @@ footer {
     text-align: center;
 }
 
-/* ==========================================================================
-   Animations
-   ========================================================================== */
+
+
+
+
+
+/* ==============
+   | ANIMATIONS |
+   ============== */
+
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.03); }
 }
 
-/* ==========================================================================
-   Under Construction Notice
-   ========================================================================== */
+
+
+
+
+/* ===========================
+   UNDER CONSTRUCTION NOTICE |
+   =========================== */
+
 .under-construction {
     text-align: center;
     color: #FF0000;
@@ -686,9 +759,109 @@ footer {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* ==========================================================================
-   Responsive Adjustments
-   ========================================================================== */
+
+
+
+
+
+/* ==================
+   | PRIVACY POLICY |
+   ================== */
+
+.privacy-container {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.privacy-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #5A256DFF;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.privacy-updated {
+    text-align: center;
+    font-style: italic;
+    color: #B276CEFF;
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+}
+
+.privacy-section {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(90, 37, 109, 0.1);
+    border: 1px solid rgba(178, 118, 206, 0.25);
+}
+
+.privacy-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #5A256DFF;
+    margin-bottom: 12px;
+}
+
+.privacy-para {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #5A256DFF;
+    margin-bottom: 10px;
+}
+
+.privacy-para:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.privacy-list li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #5A256DFF;
+}
+
+.privacy-list li::before {
+    content: '🐾';
+    position: absolute;
+    left: 0;
+    font-size: 0.9rem;
+}
+
+.privacy-list a,
+.privacy-para a {
+    color: #B276CEFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.privacy-list a:hover,
+.privacy-para a:hover {
+    color: #DB62BF;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+/* ==========================
+   | RESPONSIVE ADJUSTMENTS |
+   ========================== */
+
 @media (max-width: 768px) {
     .logo {
         font-size: 2.6rem;
@@ -744,9 +917,16 @@ footer {
     font-weight: 500;
 }
 
-/* ==========================================================================
-   Price Card Enhancements
-   ========================================================================== */
+
+
+
+
+
+
+/* ===========================
+   | PRICE CARD ENHANCEMENTS |
+   =========================== */
+
 .price-card .features-list li strong {
     font-weight: bold;
     color: #5A256DFF;
@@ -758,9 +938,16 @@ footer {
     color: #DB62BF;
 }
 
-/* ==========================================================================
-   Social Media Links in Footer
-   ========================================================================== */
+
+
+
+
+
+
+/* ================================
+   | SOCIAL MEDIA LINKS IN FOOTER |
+   ================================ */
+
 .social-container {
     display: flex;
     justify-content: center;
@@ -791,7 +978,7 @@ footer {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Optional: make Facebook 'f' look a bit better */
+/* Make Facebook 'f' look a bit better */
 .social-link[href*="facebook"] {
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -807,9 +994,15 @@ footer {
     }
 }
 
-/* ==========================================================================
-   Emergency Layout Fix (wide screens)
-   ========================================================================== */
+
+
+
+
+
+/* =============================
+   | LAYOUT FIX (WIDE SCREENS) |
+   ============================= */
+
 @media (min-width: 900px) {
     .cards-container {
         display: flex !important;

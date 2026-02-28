@@ -1,6 +1,6 @@
-// ==========================================================================
-// main.js - KalmKatz - Data Loader & Renderer
-// ==========================================================================
+// ===============================================
+// | MAIN.JS - KALMKATZ - DATA LOADER & RENDERER |
+// ===============================================
 
 // Helper function to load JSON via XHR (works on file:// URLs)
 function loadJSON(url, callback) {
@@ -24,9 +24,16 @@ function loadJSON(url, callback) {
     xhr.send(null);
 }
 
-// ==========================================================================
-// Initialize on page load
-// ==========================================================================
+
+
+
+
+
+
+// ===========================
+// | INITIALISE ON PAGE LOAD |
+// ===========================
+
 document.addEventListener('DOMContentLoaded', () => {
     // Load and render cat review cards
     loadJSON('cards.json', (err, cards) => {
@@ -49,11 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderPrices(prices);
     });
+
+    // Load and render privacy policy
+    loadJSON('privacy.json', (err, policy) => {
+        if (err) {
+            console.error('Error loading privacy policy:', err);
+            document.getElementById('privacy-content').innerHTML =
+                '<p style="text-align:center; color:#5A256DFF;">Sorry, could not load the privacy policy.</p>';
+            return;
+        }
+        renderPrivacy(policy);
+    });
 });
 
-// ==========================================================================
-// Render review cards
-// ==========================================================================
+
+
+
+
+
+
+// =======================
+// | RENDER REVIEW CARDS |
+// =======================
+
 function renderCards(cards) {
     const container = document.getElementById('home');
     if (!container) return;
@@ -104,9 +129,17 @@ function renderCards(cards) {
     });
 }
 
-// ==========================================================================
-// Render pricing cards
-// ==========================================================================
+
+
+
+
+
+
+
+// ========================
+// | RENDER PRICING CARDS |
+// ========================
+
 function renderPrices(prices) {
     const grid = document.getElementById('pricing-grid');
     if (!grid) return;
@@ -187,9 +220,61 @@ function renderPrices(prices) {
     grid.appendChild(discountsCard);
 }
 
-// ==========================================================================
-// Dynamic Nav Height Adjustment
-// ==========================================================================
+
+
+
+
+
+
+
+// =========================
+// | RENDER PRIVACY POLICY |
+// =========================
+
+function renderPrivacy(policy) {
+    const container = document.getElementById('privacy-content');
+    if (!container) return;
+
+    let html = `<h1 class="privacy-title">${policy.title}</h1>`;
+    html += `<p class="privacy-updated">Last updated: ${policy.lastUpdated}</p>`;
+
+    policy.sections.forEach(section => {
+        html += `<div class="privacy-section" id="${section.id}">`;
+        html += `<h2 class="privacy-heading">${section.heading}</h2>`;
+
+        if (section.content) {
+            section.content.forEach(para => {
+                html += `<p class="privacy-para">${para}</p>`;
+            });
+        }
+
+        if (section.list) {
+            html += `<ul class="privacy-list">`;
+            section.list.forEach(item => {
+                html += `<li>${item}</li>`;
+            });
+            html += `</ul>`;
+        }
+
+        if (section.contentAfter) {
+            section.contentAfter.forEach(para => {
+                html += `<p class="privacy-para">${para}</p>`;
+            });
+        }
+
+        html += `</div>`;
+    });
+
+    container.innerHTML = html;
+}
+
+
+
+
+
+// =================================
+// | DYNAMIC NEW HEIGHT ADJUSTMENT |
+// =================================
 
 // Make sure the logo never hides behind the fixed nav
 function updateBodyPadding() {
