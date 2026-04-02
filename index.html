@@ -83,6 +83,366 @@
 
 
 
+
+
+    
+<!-- ============================================================
+   🎉 HOLIDAY OVERLAY — Copy & paste this entire block into your HTML
+   ============================================================
+   MANUAL OVERRIDE: Change __HO_OVERRIDE from null to one of:
+     'christmas' | 'halloween' | 'valentine' | 'easter' | 'newyears'
+   Example: const __HO_OVERRIDE = 'halloween';
+   ============================================================ -->
+<script>
+/* === HOLIDAY OVERLAY CONFIG === */
+const __HO_OVERRIDE = 'easter'; // <-- change to 'christmas','halloween','valentine','easter','newyears' to force a theme
+
+/* === DO NOT EDIT BELOW THIS LINE === */
+(function () {
+  'use strict';
+
+  const _NS = '__hov9q2z__';
+
+  const _WINDOWS = {
+    valentine: function(m,d){ return m===2 && d>=1 && d<=14; },
+    easter:    function(m,d){ return (m===3 && d>=15) || (m===4 && d<=30); },
+    halloween: function(m,d){ return m===10; },
+    christmas: function(m,d){ return m===12 && d>=1 && d<=26; },
+    newyears:  function(m,d){ return (m===12 && d>=27) || (m===1 && d<=3); },
+  };
+
+  const _THEMES = {
+    valentine: {
+      bg:     'linear-gradient(135deg,rgba(220,38,90,0.20) 0%,rgba(255,105,145,0.10) 100%)',
+      title:  '\u{1F49D} Happy Valentine\'s Day! \u{1F49D}',
+      color:  '#c2185b',
+      glow:   'rgba(194,24,91,0.4)',
+      font:   '"Georgia",serif',
+      weight: '700',
+      emojis: ['\u2764\uFE0F','\uD83D\uDC95','\uD83D\uDC98','\uD83D\uDC9D','\uD83D\uDC96','\uD83C\uDF39','\uD83D\uDC8C','\uD83D\uDC97','\uD83E\uDD0D','\uD83C\uDF37'],
+    },
+    easter: {
+      bg:     'linear-gradient(135deg,rgba(156,39,176,0.12) 0%,rgba(255,235,59,0.12) 100%)',
+      title:  '\uD83D\uDC23 Happy Easter! \uD83C\uDF37',
+      color:  '#6a1b9a',
+      glow:   'rgba(106,27,154,0.35)',
+      font:   '"Comic Sans MS","Comic Sans",cursive',
+      weight: '700',
+      emojis: ['\uD83D\uDC23','\uD83E\uDD5A','\uD83D\uDC30','\uD83C\uDF37','\uD83C\uDF38','\uD83C\uDF3C','\uD83D\uDC07','\u2728','\uD83C\uDF3A','\uD83C\uDF1F'],
+    },
+    halloween: {
+      bg:     'linear-gradient(135deg,rgba(15,0,0,0.60) 0%,rgba(80,15,0,0.40) 100%)',
+      title:  '\uD83D\uDC7B Happy Halloween! \uD83C\uDF83',
+      color:  '#ff8f00',
+      glow:   'rgba(255,111,0,0.55)',
+      font:   '"Papyrus","fantasy",serif',
+      weight: '700',
+      emojis: ['\uD83C\uDF83','\uD83D\uDC7B','\uD83D\uDD77\uFE0F','\uD83E\uDD87','\uD83D\uDD78\uFE0F','\uD83D\uDC80','\uD83C\uDF19','\uD83D\uDD2E','\uD83E\uDDDB','\uD83D\uDC09'],
+    },
+    christmas: {
+      bg:     'linear-gradient(135deg,rgba(0,50,15,0.32) 0%,rgba(160,0,0,0.18) 100%)',
+      title:  '\uD83C\uDF84 Merry Christmas! \u2B50',
+      color:  '#b71c1c',
+      glow:   'rgba(183,28,28,0.4)',
+      font:   '"Georgia","Times New Roman",serif',
+      weight: '700',
+      emojis: ['\uD83C\uDF84','\u2B50','\u2744\uFE0F','\uD83C\uDF85','\uD83C\uDF81','\uD83D\uDD14','\u2728','\u26C4','\uD83E\uDD8C','\uD83C\uDF20'],
+    },
+    newyears: {
+      bg:     'linear-gradient(135deg,rgba(10,10,40,0.55) 0%,rgba(80,60,0,0.30) 100%)',
+      title:  '\uD83C\uDF86 Happy New Year! \uD83C\uDF89',
+      color:  '#ffd600',
+      glow:   'rgba(255,214,0,0.55)',
+      font:   '"Georgia","Times New Roman",serif',
+      weight: '700',
+      emojis: ['\uD83C\uDF86','\uD83C\uDF87','\uD83C\uDF89','\uD83C\uDF8A','\u2728','\uD83E\uDD42','\uD83C\uDF7E','\u2B50','\uD83D\uDD70\uFE0F','\uD83E\uDDA9'],
+    },
+  };
+
+  function _detectTheme(date) {
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+    var keys = Object.keys(_WINDOWS);
+    for (var i = 0; i < keys.length; i++) {
+      if (_WINDOWS[keys[i]](m, d)) return keys[i];
+    }
+    return null;
+  }
+
+  function _getDate(cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://worldtimeapi.org/api/ip', true);
+    xhr.timeout = 4000;
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        try {
+          if (xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+            cb(new Date(json.datetime));
+          } else { cb(new Date()); }
+        } catch(e) { cb(new Date()); }
+      }
+    };
+    xhr.ontimeout = function(){ cb(new Date()); };
+    xhr.onerror   = function(){ cb(new Date()); };
+    xhr.send();
+  }
+
+  function _run(theme) {
+    if (document.getElementById(_NS + 'wrap')) return;
+    var t = _THEMES[theme];
+
+    /* ── Styles ── */
+    var css = document.createElement('style');
+    css.id  = _NS + 'css';
+    css.textContent = [
+      '@keyframes ' + _NS + 'fi{from{opacity:0}to{opacity:1}}',
+      '@keyframes ' + _NS + 'fo{from{opacity:1}to{opacity:0}}',
+      '@keyframes ' + _NS + 'pop{0%{transform:translate(-50%,-50%) scale(0.2);opacity:0}80%{transform:translate(-50%,-50%) scale(1.06)}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}',
+      '@keyframes ' + _NS + 'bfo{from{opacity:1;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-50%) scale(0.8)}}',
+      /* ↓ Changed: starts at top (-12% from top), falls down to +115vh */
+      '@keyframes ' + _NS + 'dn{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}90%{opacity:0.8}100%{transform:translateY(115vh) rotate(680deg) scale(0.3);opacity:0}}',
+      '#' + _NS + 'wrap{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483647;overflow:hidden;background:' + t.bg + ';animation:' + _NS + 'fi 1.4s ease forwards}',
+      '#' + _NS + 'banner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:' + t.font + ';font-size:clamp(1.6rem,4.5vw,3.8rem);font-weight:' + t.weight + ';color:' + t.color + ';text-align:center;white-space:nowrap;padding:0.55em 1.1em;border-radius:1em;background:rgba(255,255,255,0.13);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,0.28);text-shadow:0 0 30px ' + t.glow + ',0 2px 8px rgba(0,0,0,0.3);box-shadow:0 8px 40px ' + t.glow + ',inset 0 1px 0 rgba(255,255,255,0.3);animation:' + _NS + 'pop 1s cubic-bezier(0.175,0.885,0.32,1.275) 0.6s both}',
+      '#' + _NS + 'hint{position:absolute;bottom:1.4rem;right:1.6rem;font-family:sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.55);letter-spacing:0.05em;animation:' + _NS + 'fi 1s ease 3s both}',
+      /* ↓ Changed: particles start at top:-12% instead of bottom:-12% */
+      '.' + _NS + 'p{position:absolute;top:-12%;pointer-events:none;user-select:none;line-height:1;filter:drop-shadow(0 2px 5px rgba(0,0,0,0.22))}',
+    ].join('');
+    document.head.appendChild(css);
+
+    /* ── Overlay ── */
+    var wrap = document.createElement('div');
+    wrap.id  = _NS + 'wrap';
+
+    var banner = document.createElement('div');
+    banner.id  = _NS + 'banner';
+    banner.textContent = t.title;
+
+    var hint = document.createElement('div');
+    hint.id  = _NS + 'hint';
+    hint.textContent = 'Closes in 30s';
+
+    wrap.appendChild(banner);
+    wrap.appendChild(hint);
+    document.body.appendChild(wrap);
+
+    /* ── New Year's Canvas Fireworks (newyears only) ── */
+    var _fwCanvas = null, _fwCtx = null, _fwShells = [], _fwSparks = [], _fwRaf = null, _fwIv = null;
+    if (theme === 'newyears') {
+      _fwCanvas = document.createElement('canvas');
+      _fwCanvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+      wrap.appendChild(_fwCanvas);
+
+      function _fwResize() {
+        _fwCanvas.width  = wrap.offsetWidth  || window.innerWidth;
+        _fwCanvas.height = wrap.offsetHeight || window.innerHeight;
+      }
+      _fwResize();
+      _fwCtx = _fwCanvas.getContext('2d');
+
+      var _fwCOLORS = [
+        '#ff3d6b','#ff8c00','#ffe600','#00e5ff','#00ff99',
+        '#d500f9','#ff6ec7','#ffffff','#76ff03','#2979ff',
+      ];
+
+      function _fwShell() {
+        var x   = _fwCanvas.width  * (0.15 + Math.random() * 0.70);
+        var y   = _fwCanvas.height * (0.10 + Math.random() * 0.55);
+        var col = _fwCOLORS[Math.floor(Math.random() * _fwCOLORS.length)];
+        var cnt = 55 + Math.floor(Math.random() * 45);
+        var r2  = 0.08 + Math.random() * 0.12; /* tail-length factor */
+        for (var i = 0; i < cnt; i++) {
+          var ang  = (i / cnt) * Math.PI * 2 + Math.random() * 0.3;
+          var spd  = 1.8 + Math.random() * 3.8;
+          _fwSparks.push({
+            x: x, y: y,
+            vx: Math.cos(ang) * spd,
+            vy: Math.sin(ang) * spd,
+            alpha: 1,
+            decay: 0.013 + Math.random() * 0.012,
+            radius: 1.6 + Math.random() * 2.0,
+            color: col,
+            trail: [],
+            trailLen: Math.floor(4 + Math.random() * 6),
+            gravity: 0.055,
+          });
+        }
+      }
+
+      /* rising shell projectile */
+      var _fwProj = [];
+      function _fwLaunch() {
+        if (!_fwCanvas) return;
+        var x    = _fwCanvas.width  * (0.15 + Math.random() * 0.70);
+        var tgtY = _fwCanvas.height * (0.10 + Math.random() * 0.50);
+        var col  = _fwCOLORS[Math.floor(Math.random() * _fwCOLORS.length)];
+        _fwProj.push({ x: x, y: _fwCanvas.height, tgtY: tgtY, vy: -8 - Math.random() * 5, col: col, trail: [] });
+      }
+
+      function _fwTick() {
+        if (!_fwCanvas || !_fwCtx) return;
+        _fwCtx.clearRect(0, 0, _fwCanvas.width, _fwCanvas.height);
+
+        /* rising projectiles */
+        for (var pi = _fwProj.length - 1; pi >= 0; pi--) {
+          var pr = _fwProj[pi];
+          pr.trail.push({ x: pr.x, y: pr.y });
+          if (pr.trail.length > 8) pr.trail.shift();
+          /* draw trail */
+          for (var ti = 0; ti < pr.trail.length; ti++) {
+            var ta = (ti / pr.trail.length) * 0.6;
+            _fwCtx.beginPath();
+            _fwCtx.arc(pr.trail[ti].x, pr.trail[ti].y, 1.5, 0, Math.PI * 2);
+            _fwCtx.fillStyle = 'rgba(255,240,180,' + ta + ')';
+            _fwCtx.fill();
+          }
+          _fwCtx.beginPath();
+          _fwCtx.arc(pr.x, pr.y, 2.5, 0, Math.PI * 2);
+          _fwCtx.fillStyle = '#fff8dc';
+          _fwCtx.fill();
+          pr.y += pr.vy;
+          pr.vy += 0.12; /* gentle deceleration */
+          if (pr.y <= pr.tgtY || pr.vy >= 0) {
+            /* burst! */
+            var col2 = pr.col;
+            var cnt2 = 55 + Math.floor(Math.random() * 45);
+            for (var si = 0; si < cnt2; si++) {
+              var ang2 = (si / cnt2) * Math.PI * 2 + Math.random() * 0.25;
+              var spd2 = 1.8 + Math.random() * 3.8;
+              _fwSparks.push({
+                x: pr.x, y: pr.y,
+                vx: Math.cos(ang2) * spd2,
+                vy: Math.sin(ang2) * spd2,
+                alpha: 1,
+                decay: 0.013 + Math.random() * 0.012,
+                radius: 1.6 + Math.random() * 2.0,
+                color: col2,
+                trail: [],
+                trailLen: Math.floor(4 + Math.random() * 6),
+                gravity: 0.055,
+              });
+            }
+            _fwProj.splice(pi, 1);
+          }
+        }
+
+        /* sparks */
+        for (var i = _fwSparks.length - 1; i >= 0; i--) {
+          var s = _fwSparks[i];
+          s.trail.push({ x: s.x, y: s.y });
+          if (s.trail.length > s.trailLen) s.trail.shift();
+          /* draw fading trail */
+          for (var j = 0; j < s.trail.length; j++) {
+            var a = (j / s.trail.length) * s.alpha * 0.5;
+            _fwCtx.beginPath();
+            _fwCtx.arc(s.trail[j].x, s.trail[j].y, s.radius * 0.5, 0, Math.PI * 2);
+            _fwCtx.fillStyle = s.color;
+            _fwCtx.globalAlpha = a;
+            _fwCtx.fill();
+          }
+          /* draw spark head */
+          _fwCtx.beginPath();
+          _fwCtx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          _fwCtx.fillStyle = s.color;
+          _fwCtx.globalAlpha = s.alpha;
+          _fwCtx.fill();
+          _fwCtx.globalAlpha = 1;
+          s.x += s.vx;
+          s.y += s.vy;
+          s.vy += s.gravity;
+          s.vx *= 0.97;
+          s.alpha -= s.decay;
+          if (s.alpha <= 0) _fwSparks.splice(i, 1);
+        }
+
+        _fwRaf = requestAnimationFrame(_fwTick);
+      }
+
+      /* initial burst right away, then every ~2.2s */
+      _fwLaunch();
+      setTimeout(_fwLaunch, 400);
+      setTimeout(_fwLaunch, 800);
+      _fwIv = setInterval(function(){
+        _fwLaunch();
+        if (Math.random() > 0.4) setTimeout(_fwLaunch, 300);
+      }, 2200);
+
+      _fwTick();
+    }
+
+    /* ── Particles ── */
+    function _particle() {
+      if (!document.getElementById(_NS + 'wrap')) return;
+      var p    = document.createElement('span');
+      var em   = t.emojis[Math.floor(Math.random() * t.emojis.length)];
+      var sz   = (1.2 + Math.random() * 2.4).toFixed(2);
+      var left = (Math.random() * 96).toFixed(1);
+      var dur  = (3.8 + Math.random() * 5.5).toFixed(2);
+      var del  = (Math.random() * 1.2).toFixed(2);
+      p.className = _NS + 'p';
+      p.textContent = em;
+      /* ↓ Changed: uses new 'dn' (down) keyframe instead of 'up' */
+      p.style.cssText = 'left:' + left + '%;font-size:' + sz + 'rem;animation:' + _NS + 'dn ' + dur + 's ease-in ' + del + 's both';
+      wrap.appendChild(p);
+      setTimeout(function(){ p.remove(); }, (parseFloat(dur) + parseFloat(del) + 0.6) * 1000);
+    }
+
+    /* initial burst */
+    for (var i = 0; i < 24; i++) { (function(ii){ setTimeout(_particle, ii * 110); })(i); }
+
+    /* continuous stream */
+    var _iv = setInterval(_particle, 550);
+
+    /* ── Banner fade 3s before end ── */
+    setTimeout(function(){
+      banner.style.animation = _NS + 'bfo 1.8s ease forwards';
+    }, 27000);
+
+    /* ── Full fadeout & cleanup at 30s ── */
+    setTimeout(function(){
+      clearInterval(_iv);
+      if (_fwIv)  { clearInterval(_fwIv);       _fwIv  = null; }
+      if (_fwRaf) { cancelAnimationFrame(_fwRaf); _fwRaf = null; }
+      _fwCanvas = null; _fwCtx = null;
+      wrap.style.animation = _NS + 'fo 1.6s ease forwards';
+      setTimeout(function(){
+        wrap.remove();
+        css.remove();
+      }, 1700);
+    }, 30000);
+  }
+
+  function _init() {
+    function _launch(date) {
+      var theme = __HO_OVERRIDE || _detectTheme(date);
+      if (!theme || !_THEMES[theme]) return;
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function(){ _run(theme); });
+      } else {
+        _run(theme);
+      }
+    }
+    _getDate(_launch);
+  }
+
+  _init();
+})();
+</script>
+    
+
+
+
+
+
+    
+
+
+
+
+    
+
+
+
 <!--        ==============
             | NAVIGATION |
             ============== -->
